@@ -1,5 +1,5 @@
 /env
 .ipynb_checkpoints
-models/__pycache__
-controllers/__pycache__
-views/__pycache__
+/models/__pycache__
+/controllers/__pycache__
+/views/__pycache__
