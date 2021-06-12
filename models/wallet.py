@@ -23,21 +23,9 @@ class Wallet:
         self.shares = shares
         self.MAX_PRICE = MAX_PRICE
 
-    # @property
-    # def price(self):
-    #     self._price = 0
-    #     for share in self.shares:
-    #         self._price += share.price
-    #     return self._price
-
     @property
     def gain(self):
-        return sum([share.gain for share in self.shares])
-        #/ len(self.shares)
-        # self._gain = 0
-        # for share in self.shares:
-        #     self._gain += share.gain
-        # return round(self._gain/len(self.shares), 0)
+        return sum([share.gain for share in self.shares]) / len(self.shares)
 
     @property
     def gain_after_two_years(self):

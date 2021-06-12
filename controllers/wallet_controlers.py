@@ -39,7 +39,9 @@ def test():
     sorted_wallet = sorted(
         wallets, key=lambda wallet: wallet.gain_after_two_years, reverse=True
     )
-    print(sorted_wallet[0].shares)
+    print(sorted_wallet[0].shares, sorted_wallet[0].gain_after_two_years, sorted_wallet[0].price)
+    print(sorted_wallet[-1].shares, sorted_wallet[-1].gain_after_two_years)
+    print(len(wallets))
 
 
 def glutton_backpack(max_price, shares, selected_shares=[]):
@@ -63,11 +65,12 @@ def brute_force_backpack(shares):
     valid_combinations = []
     for combi in combinations:
         price_combi = 0
+        gain_combi = 0
         for i in range(n):
             if combi[i] == "1":
                 selected_shares.append(shares[i])
                 price_combi += shares[i].price
-        if price_combi <= MAX_PRICE:
+        if price_combi <= MAX_PRICE and len(selected_shares) > 0:
             wallet = Wallet(price_combi, selected_shares)
             valid_combinations.append(wallet)
         selected_shares = []
