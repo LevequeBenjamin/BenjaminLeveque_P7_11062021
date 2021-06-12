@@ -16,10 +16,6 @@ class Share:
         name,
         price,
         gain,
-        nb_shares,
-        max_cost,
-        gain_after_two_year_by_shares,
-        gain_with_500,
     ):
         """[summary]
 
@@ -31,10 +27,10 @@ class Share:
         self.name = name
         self.price = price
         self.gain = gain
-        self.nb_shares = nb_shares
-        self.max_cost = max_cost
-        self.gain_after_two_year_by_shares = gain_after_two_year_by_shares
-        self.gain_with_500 = gain_with_500
+
+    @property
+    def gain_after_two_years(self):
+        return (self.price / 100) * (self.gain)
 
 
 class ContructorShare:
@@ -42,18 +38,10 @@ class ContructorShare:
     def constructor_share(shares):
         new_shares = []
         for share in shares:
-            nb_shares = int(500 / share[1])
-            max_cost = round((nb_shares * share[1]), 2)
-            gain_after_two_year_by_shares = (share[1] / 100) * (share[2])
-            gain_with_500 = round((nb_shares * gain_after_two_year_by_shares), 2)
             new_share = Share(
                 share[0],
                 share[1],
                 share[2],
-                nb_shares,
-                max_cost,
-                gain_after_two_year_by_shares,
-                gain_with_500,
             )
             new_shares.append(new_share)
         return new_shares

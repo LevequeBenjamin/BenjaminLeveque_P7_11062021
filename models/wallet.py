@@ -13,25 +13,36 @@ Returns:
 class Wallet:
     """[summary]"""
 
-    def __init__(self, shares: list):
+    def __init__(self, price, shares: list, MAX_PRICE: int = 500) -> None:
         """[summary]
 
         Args:
             shares (list): [description]
         """
+        self.price = price
         self.shares = shares
-        self.share = []
-        self.all_shares = []
-        self.MAX_PRICE = 500
+        self.MAX_PRICE = MAX_PRICE
+
+    # @property
+    # def price(self):
+    #     self._price = 0
+    #     for share in self.shares:
+    #         self._price += share.price
+    #     return self._price
+
+    @property
+    def gain(self):
+        return sum([share.gain for share in self.shares])
+        #/ len(self.shares)
+        # self._gain = 0
+        # for share in self.shares:
+        #     self._gain += share.gain
+        # return round(self._gain/len(self.shares), 0)
+
+    @property
+    def gain_after_two_years(self):
+        return round((self.price * self.gain) / 100, 2)
 
     def sorted_shares(self) -> list:
         sorted_shares = sorted(self.shares, key=lambda share: share.gain, reverse=True)
         return sorted_shares
-
-    def wallet_500(self):
-        pass
-
-    def knapsack(self):
-        shares_one = self.wallet_500()
-        #sorted_all_best_action = sorted(shares_one, key=itemgetter(-1), reverse=True)
-        #return sorted_all_best_action

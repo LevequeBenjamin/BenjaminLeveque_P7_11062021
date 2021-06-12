@@ -33,31 +33,6 @@ SHARES = [
 MAX_PRICE = 500
 
 
-# def sorted_shares() -> list:
-#     """Function which allows to calculate and return
-#     a list in the order of the most interesting action to the least
-
-#     Returns:
-#         sorted_shares (list): [description]
-#     """
-#     shares = []
-#     best_shares = []
-#     for share in SHARES:
-#         nb_shares = int(MAX_PRICE / share[1])
-#         max_cost = nb_shares * share[1]
-#         gain_after_two_year_by_shares = (share[1] / 100) * (share[2])
-#         gain_with_500 = nb_shares * gain_after_two_year_by_shares
-#         shares += share
-#         shares.append(round(max_cost, 2))
-#         shares.append(round(gain_with_500, 2))
-#         shares.append(nb_shares)
-#         best_shares.append(shares)
-#         shares = []
-
-#     sorted_shares = sorted(best_shares, key=itemgetter(2), reverse=True)
-#     return sorted_shares
-
-
 def test():
     shares = ContructorShare.constructor_share(SHARES)
     wallet = Wallet(shares)
