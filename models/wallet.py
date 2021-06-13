@@ -13,15 +13,19 @@ Returns:
 class Wallet:
     """[summary]"""
 
-    def __init__(self, price, shares: list, MAX_PRICE: int = 500) -> None:
+    def __init__(self, shares: list, MAX_PRICE: int = 500) -> None:
         """[summary]
 
         Args:
             shares (list): [description]
         """
-        self.price = price
+        # self.price = price
         self.shares = shares
         self.MAX_PRICE = MAX_PRICE
+
+    @property
+    def price(self):
+        return sum([share.price for share in self.shares])
 
     @property
     def gain(self):

@@ -2,6 +2,10 @@
 from colorama import Fore
 import sys
 
+# controllers
+from controllers.bruteforce_controllers import get_wallets_500
+from controllers.optimized_controllers import test
+
 # views
 from views import views
 
@@ -11,6 +15,11 @@ def exit_program() -> None:
     sys.exit()
 
 
+def brute_force_controllers():
+    get_wallets_500()
+    run()
+
+
 def main_perform(user_choice: int) -> None:
     """Dispatch the action requested by the user.
     Args:
@@ -18,6 +27,8 @@ def main_perform(user_choice: int) -> None:
     """
 
     commands = {
+        3: test,
+        1: brute_force_controllers,
         0: exit_program,
     }
     getattr(commands[user_choice]())
