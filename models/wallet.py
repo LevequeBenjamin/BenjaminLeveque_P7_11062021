@@ -1,7 +1,5 @@
 """Contains class Share"""
 
-from tqdm import tqdm
-from operator import itemgetter
 
 """[summary]
 
@@ -13,7 +11,7 @@ Returns:
 class Wallet:
     """[summary]"""
 
-    def __init__(self, shares: list, MAX_PRICE: int = 500) -> None:
+    def __init__(self, shares: list) -> None:
         """[summary]
 
         Args:
@@ -21,20 +19,33 @@ class Wallet:
         """
         # self.price = price
         self.shares = shares
-        self.MAX_PRICE = MAX_PRICE
+        # self.MAX_PRICE = MAX_PRICE
 
     @property
-    def price(self):
-        return sum([share.price for share in self.shares])
+    def price(self) -> int:
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
+        return sum([share.price / 100 for share in self.shares])
 
     @property
-    def gain(self):
+    def gain(self) -> int:
+        """[summary]
+
+        Returns:
+            [type]: [description]
+        """
         return sum([share.gain for share in self.shares]) / len(self.shares)
 
     @property
-    def gain_after_two_years(self):
-        return round((self.price * self.gain) / 100, 2)
+    def gain_after_two_years(self) -> float:
+        """[summary]
 
-    def sorted_shares(self) -> list:
-        sorted_shares = sorted(self.shares, key=lambda share: share.gain, reverse=True)
-        return sorted_shares
+        Returns:
+            [type]: [description]
+        """
+        return round(
+            sum([share.gain_after_two_years for share in self.shares]), 2
+        )
