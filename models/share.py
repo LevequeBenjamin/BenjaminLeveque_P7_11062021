@@ -44,7 +44,7 @@ class ContructorShare:
     """
 
     @staticmethod
-    def constructor_share(shares):
+    def constructor_share(shares: list) -> list:
         """Allows you to build Share instances.
 
         Args:
