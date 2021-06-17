@@ -1,4 +1,4 @@
-"""Docstrings."""
+"""Contains the glutton algorithm."""
 
 # librairies
 from typing import List
@@ -9,14 +9,14 @@ from models.wallet import Wallet
 
 
 def glouton(shares: List[Share], max_price: int) -> Wallet:
-    """[summary]
+    """Glutton algorithm.
 
     Args:
-        shares (List[Share]): [description]
-        selected_shares (list, optional): [description]. Defaults to [].
+        shares (List[Share]): a list of Share intance.
+        max_price (int): a max price of wallet.
 
     Returns:
-        Wallet: [description]
+        Wallet: a Wallet instance.
     """
     selected_shares = []
     i = 0

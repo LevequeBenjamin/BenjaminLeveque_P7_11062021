@@ -1,7 +1,9 @@
+"""Contains the main view."""
+
 # librairies
-from colorama import Fore
 import os
 import sys
+from colorama import Fore
 
 
 def header() -> None:
@@ -51,7 +53,7 @@ def prompt_int(message: str) -> int:
 def prompt_return() -> str:
     """Return Y.
     Returns:
-        [type]: [description]
+        confirm (str): user choice.
     """
     confirm = ""
     while confirm != "Y":
@@ -68,19 +70,21 @@ def print_wallet(
     price: float,
     gain_after_two_years: float,
 ) -> None:
-    """Display a array with information of player dict.
+    """Display a array with information of wallet.
+
     Args:
-        player (dict): a dict of player.
+        shares (list(Shares)): a list of Share instances.
+        price (float): a total price of wallet.
+        gain_after_two_years (float): a gain after two years of wallet.
     """
-    print(
-        f"{'ACTIONS'.center(30)} | "
-        f"{'PRIX'.center(30)} | "
-        f"{'PROFIT SUR 2 ANS'.center(30)}"
-        f"\n{'°' * 119}"
-    )
-    print(
-        f"{str(price).center(30)} | "
-        f"{str(gain_after_two_years).center(30)}"
-        f"\n{'-' * 119}"
-    )
+    print(f"{'ACTIONS'.center(40)} | " f"\n{'°' * 42}")
     print("\n".join([share.name for share in shares]))
+    print(f"{'-' * 42}")
+    print(f"{'PRIX'.center(20)}|" f"{'PROFIT SUR 2 ANS'.center(20)}|" f"\n{'°' * 42}")
+    print(
+        Fore.LIGHTRED_EX + f"{str(price).center(20)}" + Fore.LIGHTWHITE_EX + "|"
+        f"{Fore.LIGHTGREEN_EX + str(gain_after_two_years).center(20)}"
+        + Fore.LIGHTWHITE_EX
+        + "|"
+        f"\n{Fore.LIGHTWHITE_EX + '-' * 42}"
+    )

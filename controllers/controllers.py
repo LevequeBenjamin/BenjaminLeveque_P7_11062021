@@ -1,6 +1,8 @@
+"""Contains the main controller."""
+
 # librairies
-from colorama import Fore
 import sys
+from colorama import Fore
 
 # models
 from models.share import ContructorShare
@@ -47,7 +49,9 @@ def exit_program() -> None:
     sys.exit()
 
 
-def brute_force_20():
+def brute_force_20() -> None:
+    """function which displays the best wallet for 20 shares using a brute force algorithm."""
+    views.header()
     shares = ContructorShare.constructor_share(SHARES)
     wallets_brute = brute_force(shares, MAX_PRICE)
     sorted_wallets_brute = sorted(
@@ -58,57 +62,79 @@ def brute_force_20():
         sorted_wallets_brute[0].price,
         sorted_wallets_brute[0].gain_after_two_years,
     )
-    #run()
+    confirm = views.prompt_return()
+    if confirm == "Y":
+        run()
 
 
-def glouton_data1():
+def glouton_data1() -> None:
+    """function which displays the best wallet for dataset1 using a glutton algorithm."""
+    views.header()
     data_1 = get_data("data/dataset1_Python+P7.csv")
     shares_1 = ContructorShare.constructor_share(data_1)
     sorted_shares_1 = sorted(
         shares_1, key=lambda share: share.gain_after_two_years, reverse=True
     )
     wallet_glouton_1 = glouton(sorted_shares_1, MAX_PRICE)
-    for share in wallet_glouton_1.shares:
-        print(share.name)
-    print(wallet_glouton_1.gain_after_two_years)
-    run()
+    views.print_wallet(
+        wallet_glouton_1.shares,
+        wallet_glouton_1.price,
+        wallet_glouton_1.gain_after_two_years,
+    )
+    confirm = views.prompt_return()
+    if confirm == "Y":
+        run()
 
 
-def glouton_data2():
+def glouton_data2() -> None:
+    """function which displays the best wallet for dataset2 using a glutton algorithm."""
+    views.header()
     data_2 = get_data("data/dataset2_Python+P7.csv")
     shares_2 = ContructorShare.constructor_share(data_2)
     sorted_shares_2 = sorted(
         shares_2, key=lambda share: share.gain_after_two_years, reverse=True
     )
     wallet_glouton_2 = glouton(sorted_shares_2, MAX_PRICE)
-    for share in wallet_glouton_2.shares:
-        print(share.name)
-    print(wallet_glouton_2.gain_after_two_years)
-    run()
+    views.print_wallet(
+        wallet_glouton_2.shares,
+        wallet_glouton_2.price,
+        wallet_glouton_2.gain_after_two_years,
+    )
+    confirm = views.prompt_return()
+    if confirm == "Y":
+        run()
 
 
-def optimized_data1():
+def optimized_data1() -> None:
+    """function which displays the best wallet for dataset1 using a optimized algorithm."""
+    views.header()
     data_1 = get_data("data/dataset1_Python+P7.csv")
     shares_1 = ContructorShare.constructor_share(data_1)
-    wallet_opti = optimized(shares_1, MAX_PRICE)
-    print(wallet_opti.price)
-    print(wallet_opti.gain)
-    print(wallet_opti.gain_after_two_years)
-    for share in wallet_opti.shares:
-        print(f"name :{share.name}, price:{share.price}, gain:{share.gain}")
-    run()
+    wallet_opti_1 = optimized(shares_1, MAX_PRICE)
+    views.print_wallet(
+        wallet_opti_1.shares,
+        wallet_opti_1.price,
+        wallet_opti_1.gain_after_two_years,
+    )
+    confirm = views.prompt_return()
+    if confirm == "Y":
+        run()
 
 
-def optimized_data2():
+def optimized_data2() -> None:
+    """function which displays the best wallet for dataset1 using a optimized algorithm."""
+    views.header()
     data_2 = get_data("data/dataset2_Python+P7.csv")
     shares_2 = ContructorShare.constructor_share(data_2)
     wallet_opti_2 = optimized(shares_2, MAX_PRICE)
-    print(wallet_opti_2.price)
-    print(wallet_opti_2.gain)
-    print(wallet_opti_2.gain_after_two_years)
-    for share in wallet_opti_2.shares:
-        print(f"name :{share.name}, price:{share.price}, gain:{share.gain}")
-    run()
+    views.print_wallet(
+        wallet_opti_2.shares,
+        wallet_opti_2.price,
+        wallet_opti_2.gain_after_two_years,
+    )
+    confirm = views.prompt_return()
+    if confirm == "Y":
+        run()
 
 
 def main_perform(user_choice: int) -> None:
@@ -132,7 +158,7 @@ def main_perform(user_choice: int) -> None:
     # # # # # # # # # # # # #
 
 
-def run():
+def run() -> None:
     """Run the programme."""
     views.menu()
     user_choice = 7

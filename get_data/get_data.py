@@ -1,17 +1,17 @@
-"""Docstrings."""
+"""Contains get_data function."""
 
 # librairies
 import csv
 
 
-def get_data(file):
-    """[summary]
+def get_data(file: str) -> list:
+    """Function that allows you to read a csv file.
 
     Args:
-        file ([type]): [description]
+        file (string): the path of the csv file.
 
     Returns:
-        [type]: [description]
+        list (str): a list of information retrieved in the csv file.
     """
     data_shares = []
     with open(file, newline="") as csvfile:

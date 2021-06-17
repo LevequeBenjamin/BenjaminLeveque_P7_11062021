@@ -1,51 +1,43 @@
-"""Contains class Share"""
+"""Contains class Wallet."""
 
+# librairies
+from typing import List
 
-"""[summary]
-
-Returns:
-    [type]: [description]
-"""
+# models
+from models.share import Share
 
 
 class Wallet:
-    """[summary]"""
+    """This is a class allowing to create a wallet.
 
-    def __init__(self, shares: list) -> None:
-        """[summary]
+    Attributs:
+        shares: list of Share instances.
+
+    Properties:
+        price: the total price of shares in the walet.
+        gain: the total gain of shares in the wallet.
+        gain_after_two_years: the total gain after two years of shares in the wallet.
+    """
+
+    def __init__(self, shares: List[Share]) -> None:
+        """Inits Wallet.
 
         Args:
-            shares (list): [description]
+            shares (list): a list of Share instances.
         """
-        # self.price = price
         self.shares = shares
-        # self.MAX_PRICE = MAX_PRICE
 
     @property
     def price(self) -> int:
-        """[summary]
-
-        Returns:
-            [type]: [description]
-        """
+        """The total price of shares in the walet."""
         return sum([share.price / 100 for share in self.shares])
 
     @property
     def gain(self) -> int:
-        """[summary]
-
-        Returns:
-            [type]: [description]
-        """
+        """The total gain of shares in the wallet."""
         return sum([share.gain for share in self.shares]) / len(self.shares)
 
     @property
     def gain_after_two_years(self) -> float:
-        """[summary]
-
-        Returns:
-            [type]: [description]
-        """
-        return round(
-            sum([share.gain_after_two_years for share in self.shares]), 2
-        )
+        """The total gain after two years of shares in the wallet."""
+        return round(sum([share.gain_after_two_years for share in self.shares]), 2)
